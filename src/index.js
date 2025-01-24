@@ -14,7 +14,7 @@ app.use(cookieParser()) // For parsing cookie
 app.use(morgan("tiny"))
 app.use(cors({
     origin: [
-          'http://localhost:5000'
+          'http://localhost:3000'
       ], // Allow your frontend URL
         methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
         allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
