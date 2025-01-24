@@ -1,7 +1,7 @@
 import { UserModel } from '../modals/user.modal.js'
 import { sendRepsonse } from '../helpers/sendResponse.js'
 import bcrypt from 'bcrypt'
-import Jwt from 'jsonwebtoken'
+import { generateTokens } from '../utils/token.js'
 
 export const RegisterController = async (req, res) => {
     try {
@@ -38,8 +38,13 @@ export const LoginController = async (req, res) => {
         
         
         //create token when user find and send data in token
-        const tokenData =  Jwt.sign(user, process.env.AUTH_SECRET,{expiresIn:"200"})
-        return sendRepsonse(res,201,false,'User Login Successfully!',tokenData)
+        const { generateAccessToken, generateRefreshToken } = generateTokens(user)
+        res.cookie('refreshToken', {
+            httpOnly: true,      // Secure the cookie from JavaScript
+            secure: true,        // Ensure cookie is sent over HTTPS
+        })
+        
+        return sendRepsonse(res,201,false,'User Login Successfully!',generateAccessToken)
         
     } catch (error) {
         return sendRepsonse(res, 500, true, error.message,null)
