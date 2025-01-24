@@ -10,10 +10,18 @@ import cookieParser from 'cookie-parser'
 const app = express()
 app.use(express.json()) //middleware
 app.use(cookieParser()) // For parsing cookie
-app.use(cors("*"))
-app.use(morgan("tiny"))
 
-app.use(express.json())
+app.use(morgan("tiny"))
+app.use(cors({
+    origin: [
+          'http://localhost:5000'
+      ], // Allow your frontend URL
+        methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
+        allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
+        credentials: true, // Allow cookies if needed
+
+}))
+
 
 
 app.get('/', (req,res) => {
