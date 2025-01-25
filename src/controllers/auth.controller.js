@@ -52,10 +52,10 @@ const RegisterController = async (req, res) => {
 
 export const sendEmailWithOtp = async (email, otp) => {
   const transporter = nodemailer.createTransport({
-    // host: envConfig.EMAIL_HOST, // Use environment variables
-    // port: envConfig.EMAIL_PORT,
-    //   secure: false, // true for port 465, false for port 587
-    service:"gmail",
+    host: envConfig.EMAIL_HOST, // Use environment variables
+    port: envConfig.EMAIL_PORT,
+      secure: true, // true for port 465, false for port 587
+    // service:"gmail",
     auth: {
       user: envConfig.EMAIL_USER,
       pass: envConfig.EMAIL_PASS,
