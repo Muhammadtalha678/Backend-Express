@@ -36,7 +36,7 @@ const RegisterController = async (req, res) => {
         201,
         false,
         "User registered. OTP sent to email.",
-        null
+        user
       );
     } catch (emailError) {
       // Rollback user creation if email sending fails
