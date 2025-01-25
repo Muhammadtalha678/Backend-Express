@@ -97,6 +97,22 @@ export const VerfiyEmailController = async (req, res) => {
           // Find the user by email
         const findUser = await UserModel.findOne({ email });
         if (!findUser) return sendRepsonse(res, 401, true, "User not found", null);
+
+        //logic to request again token if expired
+        if (!otp) {
+            const newOtp = generateOTP(); // Generate a new OTP
+            findUser.otp = newOtp
+            findUser.otpExpiresAt = Date.now() + 5 * 60 * 1000; // 5 minutes expiration
+            await findUser.save()
+             return sendRepsonse(
+            res,
+            200,
+            false,
+            "OTP verified successfully",
+            null
+        );
+        }
+
         // Check if OTP matches and is not expired
         if (findUser.otp !== otp)  return sendRepsonse(res, 400, true, "Invalid OTP", null); 
             
