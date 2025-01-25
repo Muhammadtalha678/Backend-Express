@@ -13,9 +13,7 @@ app.use(cookieParser()) // For parsing cookie
 
 app.use(morgan("tiny"))
 app.use(cors({
-    origin: [
-          'http://localhost:3000'
-      ], // Allow your frontend URL
+    origin: "https://web-hackathon2025.vercel.app", // Allow your frontend URL
         methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
         allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
         credentials: true, // Allow cookies if needed
