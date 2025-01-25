@@ -151,13 +151,13 @@ const LoginController = async (req, res) => {
         
         
         //create token when user find and send data in token
-        const { generateAccessToken, generateRefreshToken } = generateTokens(user)
-        res.cookie('refreshToken', {
-            httpOnly: true,      // Secure the cookie from JavaScript
-            secure: true,        // Ensure cookie is sent over HTTPS
-        })
+        const { generateAccessToken} = generateTokens(user)
+        // res.cookie('refreshToken', {
+        //     httpOnly: true,      // Secure the cookie from JavaScript
+        //     secure: true,        // Ensure cookie is sent over HTTPS
+        // })
         
-        return sendRepsonse(res,201,false,'User Login Successfully!',generateAccessToken)
+        return sendRepsonse(res,201,false,'User Login Successfully!',{generateAccessToken,name:user.name,email})
         
     } catch (error) {
         return sendRepsonse(res, 500, true, error.message,null)
