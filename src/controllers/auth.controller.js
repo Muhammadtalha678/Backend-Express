@@ -157,7 +157,7 @@ const LoginController = async (req, res) => {
         //     secure: true,        // Ensure cookie is sent over HTTPS
         // })
         
-        return sendRepsonse(res,201,false,'User Login Successfully!',{generateAccessToken,name:user.name,email})
+        return sendRepsonse(res,201,false,'User Login Successfully!',{generateAccessToken,name:user.fullname,email})
         
     } catch (error) {
         return sendRepsonse(res, 500, true, error.message,null)
