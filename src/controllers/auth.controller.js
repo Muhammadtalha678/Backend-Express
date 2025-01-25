@@ -68,7 +68,7 @@ export const sendEmailWithOtp = async (email, otp) => {
     subject: "Welcome to Hackathon Website!", // Subject line
     html: `
       <div style="font-family: Arial, sans-serif; line-height: 1.5; color: #333;">
-        <h2>Welcome to ABC Website!</h2>
+        <h2>Welcome to Hackathon Website!</h2>
         <p>Dear User,</p>
         <p>Thank you for registering on our platform. Please use the following OTP to complete your registration:</p>
         <h3 style="background: #f4f4f4; padding: 10px; border-radius: 5px; text-align: center;">
